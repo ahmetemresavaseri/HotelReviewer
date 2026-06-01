@@ -20,6 +20,7 @@
       start_intro:"Bevor Sie Ihren Aufenthalt bewerten, erzählen Sie uns bitte kurz etwas über sich.",
       intro_continue:"Weiter zur Bewertung",
       f_name_req:"Bitte geben Sie Ihren Namen ein.",
+      field_required:"Bitte füllen Sie dieses Feld aus.",
       hello:"Schön, Sie zu sehen,",
       ratings_title:"Wie war Ihr Aufenthalt?",
       ratings_sub:"Bitte bewerten Sie die folgenden Bereiche.",
@@ -48,6 +49,7 @@
       start_intro:"Before you rate your stay, please tell us a little about yourself.",
       intro_continue:"Continue to review",
       f_name_req:"Please enter your name.",
+      field_required:"Please fill in this field.",
       hello:"Lovely to see you,",
       ratings_title:"How was your stay?",
       ratings_sub:"Please rate the following areas.",
@@ -76,6 +78,7 @@
       start_intro:"Konaklamanızı değerlendirmeden önce, lütfen bize kısaca kendinizden bahsedin.",
       intro_continue:"Değerlendirmeye devam et",
       f_name_req:"Lütfen adınızı girin.",
+      field_required:"Lütfen bu alanı doldurun.",
       hello:"Sizi görmek güzel,",
       ratings_title:"Konaklamanız nasıldı?",
       ratings_sub:"Lütfen aşağıdaki alanları değerlendirin.",
@@ -104,6 +107,7 @@
       start_intro:"Прежде чем оценить ваш отдых, пожалуйста, расскажите немного о себе.",
       intro_continue:"Перейти к оценке",
       f_name_req:"Пожалуйста, введите ваше имя.",
+      field_required:"Пожалуйста, заполните это поле.",
       hello:"Рады вас видеть,",
       ratings_title:"Как прошёл ваш отдых?",
       ratings_sub:"Пожалуйста, оцените следующие категории.",
@@ -295,6 +299,14 @@
   function wireIntro(){
     const form=document.querySelector("form.intro-form");
     if(!form) return;
+    // Pflichtfelder: lokalisierte Meldung statt der Browser-Standardsprache.
+    const reqFields=form.querySelectorAll("[required]");
+    reqFields.forEach(function(field){
+      field.addEventListener("invalid",function(){
+        field.setCustomValidity(t(current(),"field_required"));
+      });
+      field.addEventListener("input",function(){ field.setCustomValidity(""); });
+    });
     form.addEventListener("submit",function(e){
       e.preventDefault();
       const data={
