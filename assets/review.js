@@ -205,10 +205,10 @@
     });
   }
 
-  function current(){ return document.documentElement.dataset.lang || "de"; }
+  function current(){ return document.documentElement.dataset.lang || "tr"; }
 
   function applyLang(lang){
-    if(!I18N[lang]) lang="de";
+    if(!I18N[lang]) lang="tr";
     document.documentElement.dataset.lang=lang;
     document.documentElement.lang=lang;
     try{ localStorage.setItem("amara_lang",lang); }catch(e){}
@@ -326,8 +326,8 @@
     wireLang();
     wireSubmit();
     wireIntro();
-    let saved="de";
-    try{ saved=localStorage.getItem("amara_lang")||"de"; }catch(e){}
+    let saved="tr";
+    try{ saved=localStorage.getItem("amara_lang")||"tr"; }catch(e){}
     applyLang(saved);
     applyGreeting();
   }
