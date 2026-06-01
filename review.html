@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amara Comfort Resort — Bewertung</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  /* ===== Mobile-first review page ===== */
+  body{ background:var(--bg-warm); }
+
+  /* --- Hero (dark) with logo + heading --- */
+  .hero{
+    position:relative;background:var(--dark);color:#fff;
+    padding:18px 22px 40px;text-align:center;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(130% 120% at 50% -15%, rgba(170,132,83,.34), transparent 60%);
+    pointer-events:none;
+  }
+  .hero > *{ position:relative;z-index:1; }
+
+  .topbar{ display:flex;justify-content:center;margin-bottom:30px; }
+  .lang-switch{ flex-wrap:wrap;justify-content:center; }
+  .lang-switch button{ padding:6px 7px;font-size:11px; }
+
+  .hero-logo{ height:62px;width:auto;display:block;margin:0 auto 22px; }
+  .hero .tagline{ color:var(--gold-soft);font-size:34px;margin-bottom:2px; }
+  .hero h1{ font-weight:300;font-size:29px;color:#fff;letter-spacing:.02em;margin-bottom:14px;line-height:1.15; }
+  .hero .intro{ color:rgba(255,255,255,.74);font-size:14.5px;max-width:420px;margin:0 auto;line-height:1.7; }
+
+  /* --- Layout wrap --- */
+  .wrap{ max-width:560px;margin:0 auto; }
+
+  /* --- Sticky live score --- */
+  .score{
+    position:sticky;top:0;z-index:20;
+    background:var(--dark);color:#fff;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:15px 22px;overflow:hidden;
+    box-shadow:0 10px 24px -16px rgba(0,0,0,.5);
+  }
+  .score::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 220% at 100% 50%, rgba(170,132,83,.36), transparent 56%);pointer-events:none;
+  }
+  .score > *{ position:relative;z-index:1; }
+  .score .lbl{ font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);line-height:1.4;max-width:120px; }
+  .score-right{ display:flex;align-items:center;gap:14px; }
+  .score .stars{ gap:3px; }
+  .score .stars .star{ cursor:default;color:rgba(255,255,255,.18);font-size:17px; }
+  .score .stars .star.on{ color:var(--gold-soft); }
+  .score .num{ font-size:34px;font-weight:300;line-height:1;white-space:nowrap; }
+  .score .num .max{ font-size:13px;color:rgba(255,255,255,.42);margin-left:3px; }
+
+  /* --- Rating cards --- */
+  .cards{ background:var(--line);display:grid;grid-template-columns:1fr;gap:1px;border-bottom:1px solid var(--line); }
+  .cell{
+    background:#fff;padding:18px 22px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .cell .rating-label{ font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:400; }
+  .cell .stars{ gap:2px; }
+  .cell .stars .star{ font-size:27px;padding:4px 2px; } /* ~44px touch target */
+
+  /* --- Submit panel --- */
+  .panel{ background:#fff;padding:32px 22px 38px;text-align:center; }
+  .panel .greeting{
+    font-family:var(--script);color:var(--gold);
+    font-size:26px;line-height:1.1;margin-bottom:8px;
+  }
+  .panel .greeting:empty{ display:none; }
+  .panel .panel-lead{ font-size:14px;color:var(--ink-soft);margin-bottom:26px;letter-spacing:.01em; }
+  .panel .feedback-block{ text-align:left;margin-bottom:28px; }
+  .panel .feedback-block .field-label{ margin-bottom:14px; }
+  .panel textarea.txt{ min-height:120px; }
+  .submit-wrap{ margin-top:6px; }
+
+  /* --- Thank you --- */
+  .thanks{ background:#fff;padding:54px 26px;text-align:center; }
+  .thanks h2{ font-weight:300;font-size:30px;color:var(--ink);margin-bottom:14px; }
+  .thanks p{ max-width:380px;margin:0 auto 28px; }
+
+  /* --- Google review nudge (only for high scores) --- */
+  .google-cta[hidden]{ display:none; }
+  .google-cta{ margin:0 auto 30px;max-width:400px; }
+  .google-cta .google-lead{ color:var(--ink-soft);margin-bottom:18px; }
+  .thanks .btn-ghost{
+    background:transparent;color:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+
+  /* --- Footer --- */
+  .amara-footer{ flex-direction:column;text-align:center;gap:14px;padding:30px 24px;line-height:1.7; }
+  .amara-footer .addr{ flex-direction:column;gap:6px;justify-content:center; }
+
+  /* ===== Tablet / desktop enhancements ===== */
+  @media (min-width:600px){
+    .hero{ padding:22px 32px 52px; }
+    .hero-logo{ height:74px; }
+    .hero .tagline{ font-size:40px; }
+    .hero h1{ font-size:38px; }
+    .wrap{ max-width:680px; }
+    .score{ padding:18px 30px; }
+    .score .lbl{ font-size:11px;max-width:none; }
+    .score .stars .star{ font-size:20px; }
+    .score .num{ font-size:42px; }
+    .cards{ grid-template-columns:1fr 1fr;gap:1px;border:1px solid var(--line);border-top:0; }
+    .cell{ flex-direction:column;align-items:flex-start;gap:14px;padding:24px 26px; }
+    .panel{ border:1px solid var(--line);border-top:0;padding:38px 36px 42px; }
+    .guest-grid{ grid-template-columns:1fr 1fr;gap:26px 30px; }
+    .guest-grid .full{ grid-column:1 / -1; }
+    .submit-wrap{ text-align:center; }
+    .btn-primary.btn-block{ width:auto; }
+    .amara-footer{ flex-direction:row;text-align:left;justify-content:space-between; }
+    .amara-footer .addr{ flex-direction:row;gap:26px; }
+  }
+</style>
+</head>
+<body data-review-page>
+
+  <section class="hero" data-top>
+    <div class="topbar">
+      <div class="lang-switch">
+        <button data-lang="tr">Türkçe</button><span class="sep">·</span>
+        <button data-lang="en">English</button><span class="sep">·</span>
+        <button data-lang="de">Deutsch</button><span class="sep">·</span>
+        <button data-lang="ru">Русский</button>
+      </div>
+    </div>
+    <img class="hero-logo" src="assets/logo-white.png" alt="Amara Comfort Resort">
+    <div class="tagline">it's your world!</div>
+    <h1 data-i18n="heading">Ihre Erfahrung</h1>
+    <p class="intro" data-i18n="intro">Wir würden uns sehr freuen, von Ihrem Aufenthalt zu hören. Ihre Bewertung hilft uns, Amara Comfort noch besser zu machen.</p>
+  </section>
+
+  <main class="wrap">
+    <div class="review-body">
+      <form class="review-form">
+
+        <div class="score">
+          <div class="lbl" data-score-state>Ihre Bewertung</div>
+          <div class="score-right">
+            <div class="stars" data-score-stars>
+              <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span>
+            </div>
+            <div class="num"><span data-score-value>–</span><span class="max">/ 5</span></div>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="cell"><span class="rating-label" data-i18n="a_overall">Gesamteindruck</span><span class="stars" data-area="a_overall"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_room">Zimmer & Sauberkeit</span><span class="stars" data-area="a_room"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_service">Service & Personal</span><span class="stars" data-area="a_service"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_food">Essen & Getränke</span><span class="stars" data-area="a_food"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_beach">Strand & Pool</span><span class="stars" data-area="a_beach"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_value">Preis-Leistung</span><span class="stars" data-area="a_value"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_spa">Spa & Wellness</span><span class="stars" data-area="a_spa"></span></div>
+          <div class="cell"><span class="rating-label" data-i18n="a_location">Lage</span><span class="stars" data-area="a_location"></span></div>
+        </div>
+
+        <div class="panel">
+          <p class="greeting" data-greeting></p>
+          <p class="panel-lead" data-i18n="ratings_sub">Bitte bewerten Sie die folgenden Bereiche.</p>
+          <div class="feedback-block">
+            <label class="field-label" data-i18n="feedback_title">Weiteres Feedback</label>
+            <textarea class="txt" name="feedback" rows="4" data-i18n-ph="ph_feedback"></textarea>
+          </div>
+          <div class="submit-wrap">
+            <button type="submit" class="btn-primary btn-block" data-i18n="submit">Bewertung absenden</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="thanks">
+      <div class="check">✓</div>
+      <h2 data-i18n="thanks_title">Vielen Dank!</h2>
+      <p data-i18n="thanks_text">Ihre Bewertung wurde übermittelt.</p>
+
+      <div class="google-cta" data-google-cta hidden>
+        <p class="google-lead" data-i18n="google_lead">Würden Sie Ihre Erfahrung auch auf Google teilen? Das würde uns sehr helfen.</p>
+        <!-- Google Place ID: Amara Comfort Resort, Kemer/Antalya -->
+        <a class="btn-primary" data-google-link
+           href="https://search.google.com/local/writereview?placeid=ChIJkZ3RiqW5wxQRvJRYYOLXGx8"
+           target="_blank" rel="noopener noreferrer"
+           data-i18n="google_btn">Auf Google bewerten</a>
+      </div>
+
+      <button class="btn-primary btn-ghost" data-reset data-i18n="thanks_back">Neue Bewertung</button>
+    </div>
+  </main>
+
+  <footer class="amara-footer">
+    <div class="addr">
+      <span>Cumhuriyet Mah. Ahu Ünal Aysal Cd. No:33, Kemer / Antalya</span>
+      <a href="tel:+902425245795">+90 242 524 57 95</a>
+    </div>
+    <span>© 2026 Amara Comfort Resort</span>
+  </footer>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

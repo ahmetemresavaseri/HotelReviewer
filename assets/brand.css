@@ -1,0 +1,139 @@
+/* ===== Amara Comfort Resort — Review subpage brand system ===== */
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+
+:root{
+  --gold:#aa8453;
+  --gold-dark:#917043;
+  --gold-soft:#c4a878;
+  --ink:#3a3736;
+  --ink-soft:#666;
+  --line:#e7e1d7;
+  --line-soft:#f0ebe2;
+  --bg:#ffffff;
+  --bg-warm:#faf8f4;
+  --sand:#f4efe7;
+  --dark:#2c2926;
+  --shadow:0 24px 60px -28px rgba(60,48,30,.35);
+  --script:'Yellowtail', cursive;
+  --sans:'Helvetica Neue','Helvetica','Arial',sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+body{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:15px;
+  line-height:1.75em;
+  color:var(--ink-soft);
+  background:var(--bg);
+}
+
+/* ---------- Header / chrome ---------- */
+.amara-header{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:22px 40px;
+  background:var(--dark);
+}
+.amara-header .logo{ height:54px;width:auto;display:block; }
+.amara-nav{ display:flex;align-items:center;gap:30px;list-style:none; }
+.amara-nav a{
+  color:rgba(255,255,255,.82);text-decoration:none;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;
+  transition:color .25s;
+}
+.amara-nav a:hover{ color:#fff; }
+.header-right{ display:flex;align-items:center;gap:22px; }
+.lang-switch{ display:flex;align-items:center;gap:2px; }
+.lang-switch button{
+  background:none;border:0;cursor:pointer;
+  color:rgba(255,255,255,.55);
+  font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 9px;transition:color .25s;font-weight:400;
+}
+.lang-switch button:hover{ color:rgba(255,255,255,.9); }
+.lang-switch button.active{ color:var(--gold-soft); }
+.lang-switch .sep{ color:rgba(255,255,255,.25);font-size:11px; }
+.reserve-btn{
+  background:var(--gold);color:#fff;text-decoration:none;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  padding:13px 26px;transition:background .25s;white-space:nowrap;
+}
+.reserve-btn:hover{ background:var(--gold-dark); }
+
+/* ---------- Footer ---------- */
+.amara-footer{
+  background:var(--dark);color:rgba(255,255,255,.55);
+  padding:30px 40px;display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;font-size:12px;letter-spacing:.04em;
+}
+.amara-footer .addr{ display:flex;gap:26px;flex-wrap:wrap;align-items:center; }
+.amara-footer a{ color:var(--gold-soft);text-decoration:none; }
+
+/* ---------- Shared form bits ---------- */
+.tagline{
+  font-family:var(--script);
+  color:var(--gold);
+  font-size:40px;line-height:1;font-weight:400;
+}
+.eyebrow{
+  font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);font-weight:400;
+}
+.section-title{
+  font-family:var(--sans);font-weight:300;color:var(--ink);
+  letter-spacing:.02em;line-height:1.15;
+}
+h1.section-title{ font-size:46px; }
+h2.section-title{ font-size:26px; }
+
+.field-label{
+  display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);font-weight:400;margin-bottom:9px;
+}
+.txt{
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);
+  font-family:var(--sans);font-weight:300;font-size:15px;color:var(--ink);
+  padding:9px 2px;transition:border-color .25s;
+}
+.txt:focus{ outline:none;border-bottom-color:var(--gold); }
+.txt::placeholder{ color:#bdb6aa; }
+textarea.txt{ resize:vertical;min-height:96px;border:1px solid var(--line);padding:14px; }
+textarea.txt:focus{ border-color:var(--gold); }
+
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  background:var(--gold);color:#fff;border:0;cursor:pointer;
+  font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+  padding:18px 46px;transition:background .25s,transform .15s;
+}
+.btn-primary:hover{ background:var(--gold-dark); }
+.btn-primary:active{ transform:translateY(1px); }
+
+/* ---------- Star rating ---------- */
+.rating-row{ display:flex;align-items:center;justify-content:space-between;gap:18px; }
+.rating-label{ font-size:14px;color:var(--ink);font-weight:300;letter-spacing:.01em; }
+.stars{ display:inline-flex;gap:5px;flex-shrink:0; }
+.stars .star{
+  font-size:24px;line-height:1;cursor:pointer;color:var(--line);
+  transition:color .12s,transform .12s;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-block{ width:100%; }
+.stars .star:hover{ transform:scale(1.12); }
+.stars .star.on{ color:var(--gold); }
+.stars .star.preview{ color:var(--gold-soft); }
+
+/* ---------- Thank-you state ---------- */
+.thanks{ display:none;text-align:center; }
+.thanks.show{ display:block;animation:fade .5s ease; }
+.thanks .check{
+  width:74px;height:74px;border-radius:50%;border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 26px;
+  color:var(--gold);font-size:34px;
+}
+@keyframes fade{ from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:none;} }
+
+.is-submitted .review-body{ display:none; }
