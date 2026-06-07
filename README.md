@@ -1,8 +1,6 @@
-# Amara Comfort Resort — Gästebewertung
+# Amara Comfort Resort — Customer reviews
 
-Mobile-first guest review subpage for Amara Comfort Resort, implemented from the
-Claude Design handoff bundle. Brand: gold accent `#aa8453`, Helvetica Neue Light,
-white logo on a dark hero, `it's your world!` script tagline.
+Mobile-first guest review subpage for Amara Comfort Resort.
 
 ## Flow
 
